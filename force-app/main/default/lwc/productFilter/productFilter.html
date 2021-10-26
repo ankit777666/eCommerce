@@ -1,0 +1,96 @@
+<template>
+    <lightning-card title="Filters" icon-name="standard:calibration">
+        <div class="slds-var-m-horizontal_medium">
+            <lightning-input
+                label="Search Key"
+                type="search"
+                onchange={handleSearchKeyChange}
+            ></lightning-input>
+            <section>
+                <lightning-slider
+                    label="Max Price"
+                    step="100"
+                    min="0"
+                    max="10000"
+                    value={maxPrice}
+                    onchange={handleMaxPriceChange}
+                ></lightning-slider>
+            </section>
+            <section>
+                <h1>Operating System</h1>
+                <template if:true={os.data}>
+                    <template
+                        for:each={os.data.values}
+                        for:item="os"
+                    >
+                        <lightning-input
+                            key={os.value}
+                            label={os.label}
+                            data-filter="os"
+                            data-value={os.value}
+                            type="checkbox"
+                            checked
+                            onchange={handleCheckboxChange}
+                        ></lightning-input>
+                    </template>
+                </template>
+                <template if:true={os.error}>
+                    <c-error-panel
+                        type="inlineMessage"
+                        friendly-message="Error loading os"
+                        errors={os.error}
+                    ></c-error-panel>
+                </template>
+            </section>
+            <section>
+                <h1>Ram</h1>
+                <template if:true={ram.data}>
+                    <template
+                        for:each={ram.data.values}
+                        for:item="ram"
+                    >
+                        <lightning-input
+                            key={ram.value}
+                            label={ram.label}
+                            data-filter="ram"
+                            data-value={ram.value}
+                            type="checkbox"
+                            checked
+                            onchange={handleCheckboxChange}
+                        ></lightning-input>
+                    </template>
+                </template>
+                <template if:true={ram.error}>
+                    <c-error-panel
+                        type="inlineMessage"
+                        friendly-message="Error loading ram"
+                        errors={ram.error}
+                    ></c-error-panel>
+                </template>
+            </section>
+            <section>
+                <h1>Storage Capacity</h1>
+                <template if:true={storage.data}>
+                    <template for:each={storage.data.values} for:item="storage">
+                        <lightning-input
+                            key={storage.value}
+                            label={storage.label}
+                            data-filter="storage"
+                            data-value={storage.value}
+                            type="checkbox"
+                            checked
+                            onchange={handleCheckboxChange}
+                        ></lightning-input>
+                    </template>
+                </template>
+                <template if:true={storage.error}>
+                    <c-error-panel
+                        type="inlineMessage"
+                        friendly-message="Error loading storage"
+                        errors={storage.error}
+                    ></c-error-panel>
+                </template>
+            </section>
+        </div>
+    </lightning-card>
+</template>
