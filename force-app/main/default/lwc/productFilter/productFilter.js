@@ -6,12 +6,12 @@ import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 //import BRAND_FIELD from '@salesforce/schema/Product__c.Brand__c';
 //import PRICE_FIELD from '@salesforce/schema/Product__c.Price__c';
 import OS_FIELD from '@salesforce/schema/Product__c.Operating_System__c';
-import RAM_FIELD from '@salesforce/schema/Product__c.Material__c';
+import RAM_FIELD from '@salesforce/schema/Product__c.Ram__c';
 import STORAGE_FIELD from '@salesforce/schema/Product__c.Storage_Capacity__c';
 
 // Lightning Message Service and a message channel
-import { publish, MessageContext } from 'lightning/messageService';
-import PRODUCTS_FILTERED_MESSAGE from '@salesforce/messageChannel/ProductsFiltered__c';
+// import { publish, MessageContext } from 'lightning/messageService';
+// import PRODUCTS_FILTERED_MESSAGE from '@salesforce/messageChannel/ProductsFiltered__c';
 
 // The delay used when debouncing event handlers before firing the event
 const DELAY = 350;
@@ -31,23 +31,23 @@ export default class ProductFilter extends LightningElement {
         storage:''
     };
 
-    @wire(MessageContext)
-    messageContext;
+    // @wire(MessageContext)
+    // messageContext;
 
     @wire(getPicklistValues, {
-        // recordTypeId: '012000000000000AAA',
+        recordTypeId: '012000000000000AAA',
         fieldApiName: OS_FIELD
     })
     os;
 
     @wire(getPicklistValues, {
-        // recordTypeId: '012000000000000AAA',
+        recordTypeId: '012000000000000AAA',
         fieldApiName: RAM_FIELD
     })
     ram;
 
     @wire(getPicklistValues, {
-        // recordTypeId: '012000000000000AAA',
+        recordTypeId: '012000000000000AAA',
         fieldApiName: STORAGE_FIELD
     })
     storage;
@@ -88,9 +88,9 @@ export default class ProductFilter extends LightningElement {
             );
         }
         // Published ProductsFiltered message
-        publish(this.messageContext, PRODUCTS_FILTERED_MESSAGE, {
-            filters: this.filters
-        });
+        // publish(this.messageContext, PRODUCTS_FILTERED_MESSAGE, {
+        //     filters: this.filters
+        // });
     }
 
     delayedFireFilterChangeEvent() {
@@ -99,11 +99,11 @@ export default class ProductFilter extends LightningElement {
         // method calls in components listening to this event.
         window.clearTimeout(this.delayTimeout);
         // eslint-disable-next-line @lwc/lwc/no-async-operation
-        this.delayTimeout = setTimeout(() => {
-            // Published ProductsFiltered message
-            publish(this.messageContext, PRODUCTS_FILTERED_MESSAGE, {
-                filters: this.filters
-            });
-        }, DELAY);
+        // this.delayTimeout = setTimeout(() => {
+        //     // Published ProductsFiltered message
+        //     publish(this.messageContext, PRODUCTS_FILTERED_MESSAGE, {
+        //         filters: this.filters
+        //     });
+        // }, DELAY);
     }
 }
