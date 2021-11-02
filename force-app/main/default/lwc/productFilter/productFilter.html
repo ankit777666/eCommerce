@@ -21,13 +21,13 @@
                 <template if:true={os.data}>
                     <template
                         for:each={os.data.values}
-                        for:item="os"
+                        for:item="os1"
                     >
                         <lightning-input
-                            key={os.value}
-                            label={os.label}
-                            data-filter="os"
-                            data-value={os.value}
+                            key={os1.value}
+                            label={os1.label}
+                            data-filter="os1"
+                            data-value={os1.value}
                             type="checkbox"
                             checked
                             onchange={handleCheckboxChange}
@@ -47,13 +47,13 @@
                 <template if:true={ram.data}>
                     <template
                         for:each={ram.data.values}
-                        for:item="ram"
+                        for:item="ram1"
                     >
                         <lightning-input
-                            key={ram.value}
-                            label={ram.label}
-                            data-filter="ram"
-                            data-value={ram.value}
+                            key={ram1.value}
+                            label={ram1.label}
+                            data-filter="ram1"
+                            data-value={ram1.value}
                             type="checkbox"
                             checked
                             onchange={handleCheckboxChange}
@@ -71,12 +71,15 @@
             <section>
                 <h1>Storage Capacity</h1>
                 <template if:true={storage.data}>
-                    <template for:each={storage.data.values} for:item="storage">
+                    <template 
+                        for:each={storage.data.values} 
+                        for:item="storage1"
+                    >
                         <lightning-input
-                            key={storage.value}
-                            label={storage.label}
-                            data-filter="storage"
-                            data-value={storage.value}
+                            key={storage1.value}
+                            label={storage1.label}
+                            data-filter="storage1"
+                            data-value={storage1.value}
                             type="checkbox"
                             checked
                             onchange={handleCheckboxChange}
