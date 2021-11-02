@@ -22,6 +22,9 @@ const DELAY = 350;
 export default class ProductFilter extends LightningElement {
     searchKey = '';
     maxPrice = 10000;
+    os;
+    ram;
+    storage;
 
     filters = {
         searchKey: '',
@@ -39,18 +42,55 @@ export default class ProductFilter extends LightningElement {
         fieldApiName: OS_FIELD
     })
     os;
+    // wiredOs({ error, data }) {
+
+    //     if (data) {
+    //         console.log(data)
+    //         this.os = data;
+    //         this.error = undefined;
+    //     } else if (error) {
+    //         console.log(eror)
+    //         this.error = error;
+    //         this.record = undefined;
+    //     }
+    // }
 
     @wire(getPicklistValues, {
         recordTypeId: '012000000000000AAA',
         fieldApiName: RAM_FIELD
     })
     ram;
+    //     wiredRam({ error, data }) {
+
+    //     if (data) {
+    //         console.log(data)
+    //         this.ram = data;
+    //         this.error = undefined;
+    //     } else if (error) {
+    //         console.log(eror)
+    //         this.error = error;
+    //         this.record = undefined;
+    //     }
+    // }
+
 
     @wire(getPicklistValues, {
         recordTypeId: '012000000000000AAA',
         fieldApiName: STORAGE_FIELD
     })
     storage;
+    //     wiredStorage({ error, data }) {
+
+    //     if (data) {
+    //         console.log(data)
+    //         this.storage = data;
+    //         this.error = undefined;
+    //     } else if (error) {
+    //         console.log(eror)
+    //         this.error = error;
+    //         this.record = undefined;
+    //     }
+    // }
 
     handleSearchKeyChange(event) {
         this.filters.searchKey = event.target.value;
